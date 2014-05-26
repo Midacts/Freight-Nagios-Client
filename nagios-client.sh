@@ -14,7 +14,7 @@
 plugin_version=2.0.1
 nrpe_version=2.15
 function nagios-plugins(){
-# Install the prerequisite packages for Nagios Plugins
+	# Install the prerequisite packages for Nagios Plugins
 		echo
 		echo -e '\e[01;34m+++ Installing the prerequisite software...\e[0m'
 		apt-get update
@@ -189,26 +189,26 @@ EOZ
 		exit 0
 }
 
-	# Check privileges
-		[ $(whoami) == "root" ] || die "You need to run this script as root."
+# Check privileges
+	[ $(whoami) == "root" ] || die "You need to run this script as root."
 
-	# Welcome to the script
-		clear
-		welcome=$(cat << EOA
+# Welcome to the script
+	clear
+	welcome=$(cat << EOA
 
 
      \e[01;37;42mWelcome to Midacts Mystery's FPM Packaging and Freight Hosting Script!\e[0m
 EOA
 )
 
-	# Calls the welcome variable
-		echo -e "$welcome"
+# Calls the welcome variable
+	echo -e "$welcome"
 
-	# Calls the doAll function
-		case "$go" in
-			* )
-				doAll ;;
-		esac
+# Calls the doAll function
+	case "$go" in
+		* )
+			doAll ;;
+	esac
 
-	# Exits the script
-		exit 0
+# Exits the script
+	exit 0
