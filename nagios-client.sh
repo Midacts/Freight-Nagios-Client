@@ -136,7 +136,7 @@ function freight(){
 		echo -e '\e[31m  Please put a space beteen each repo\e[0m'
 		echo -e '\e[33;01mFor example: apt/squeeze apt/wheezy apt/trusty\e[0m'
 		read -ra repo
-		/usr/bin/freight add $plugins $nrpe ${repo[0]} ${repo[1]} ${repo[2]} ${repo[3]} ${repo[4]}
+		/usr/bin/freight-add $plugins $nrpe ${repo[0]} ${repo[1]} ${repo[2]} ${repo[3]} ${repo[4]}
 		echo
 		echo -e '\e[30;01mPlease type in your GPG Key passphrase for as many repos you are adding\e[0m'
 		echo
