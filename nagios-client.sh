@@ -1,7 +1,7 @@
 #!/bin/bash
 # FPM Packaging with Freight Hosting Script for Nagios Clients
-# Date: 25th of May, 2014
-# Version 1.0
+# Date: 31st of July, 2014
+# Version 1.1
 #
 # Author: John McCarthy
 # Email: midactsmystery@gmail.com
@@ -11,7 +11,7 @@
 # Romans 16:27, I Corinthians 15:1-4
 #---------------------------------------------------------------
 ######## VARIABLES ########
-plugin_version=2.0.1
+plugin_version=2.0.3
 nrpe_version=2.15
 function nagios-plugins(){
 	# Install the prerequisite packages for Nagios Plugins
@@ -35,7 +35,8 @@ function nagios-plugins(){
 	# Configure the installation
 		echo
 		echo -e '\e[01;34m+++ Configuring the Nagios Plugins installation files...\e[0m'
-		useradd nagios
+		groupadd -g 9000 nagios
+		useradd -u 9000 -g nagios -d /usr/local/nagios -c 'Nagios Admin' nagios
 		./configure --with-nagios-user=nagios --with-nagios-group=nagios --with-openssl=/usr/bin/openssl --enable-perl-modules --enable-libtap
 		make
 
@@ -49,10 +50,10 @@ function nagios-plugins(){
 	# Create the --after-installation script for Nagios Plugins
 		cat << 'EOP' > /root/plugins.sh
 #!/bin/bash
-	# Set Folder Permissions
-		useradd nagios
-		chown nagios:nagios /usr/local/nagios
-		chown -R nagios:nagios /usr/local/nagios/libexec
+# Set Folder Permissions
+	useradd nagios
+	chown nagios:nagios /usr/local/nagios
+	chown -R nagios:nagios /usr/local/nagios/libexec
 
 EOP
 
